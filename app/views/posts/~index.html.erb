@@ -1,0 +1,17 @@
+<video id="videoElement">
+
+</video>
+<script>
+	$(document).ready(function() {
+    //place code inside jQuery ready event handler 
+    //to ensure videoElement is available
+    var i = 0;
+    var sources = ['/assets/2.mp4', '/assets/2.mp4'];
+    $('#videoElement').bind('ended', function() {
+        //'this' is the DOM video element
+        this.src = sources[i++ % sources.length];
+        this.load();
+        this.play();
+    });
+	});
+</script>

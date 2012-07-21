@@ -1,0 +1,25 @@
+%video{:src=> "/assets/4.flv" , :id=> "videoElement" ,:controls=> "true" }
+  
+%h1
+  Listing Posts
+%table
+  %tr
+    %th{:align=>"left"} Title
+    %th{:align=>"left"} Description
+    %th{:align=>"center"} Actions
+  -@posts.each do |post|
+    %tr
+      %td{:style => "width:10%;"}
+        = post.title
+      %td{:style => "width:60%;"}
+        = post.description
+      %td{:style => "width:30%", :align=>"center"}
+        = link_to 'Show', post
+        |
+        = link_to 'Edit', edit_post_path(post)
+        |
+        = link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete
+= link_to 'New Post', new_post_path
+
+%script
+  $(document).ready(function() {    var i = 0;    var sources = ['/assets/1.mp4', '/assets/4.flv'];    $('#videoElement').bind('ended', function() {      this.src = sources[i++ % sources.length];      this.load();      this.play();      });  });
